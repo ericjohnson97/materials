@@ -32,13 +32,15 @@ hrs2Strain = hrs2(:,4)/hrs2M(3);
 hrs6Strain = hrs6(:,4)/hrs6M(3);
 hrs24Strain = hrs24(:,4)/hrs24M(3);
 
-%calc Young's Modulus
-untreatedYM = (sum(untreatedStress(50:100)) / length(untreatedStress(50:100)))  /   (sum(untreatedStrain(50:100)) / length(untreatedStrain(50:100)));
-annealedYM = (sum(annealedStress(50:100)) / length(annealedStress(50:100)))  /   (sum(annealedStrain(50:100)) / length(annealedStrain(50:100)));
-min30YM = (sum(min30Stress(50:100)) / length(min30Stress(50:100)))  /   (sum(min30Strain(50:100)) / length(min30Strain(50:100)));
-hrs2YM = (sum(hrs2Stress(50:100)) / length(hrs2Stress(50:100)))  /   (sum(hrs2Strain(50:100)) / length(hrs2Strain(50:100)));
-hrs6YM = (sum(hrs6Stress(50:100)) / length(hrs6Stress(50:100)))  /   (sum(hrs6Strain(50:100)) / length(hrs6Strain(50:100)));
-hrs24YM = (sum(hrs24Stress(50:100)) / length(hrs24Stress(50:100)))  /   (sum(hrs24Strain(50:100)) / length(hrs24Strain(50:100)));
+%calc Young's Modulus 
+
+%SUMTING WONG
+untreatedYM = (sum(untreatedStress(50:100)) / length(untreatedStress(50:100)))  /   (sum(untreatedStrain(50:100)) / length(untreatedStrain(50:100)))
+annealedYM = (sum(annealedStress(50:100)) / length(annealedStress(50:100)))  /   (sum(annealedStrain(50:100)) / length(annealedStrain(50:100)))
+min30YM = (sum(min30Stress(50:100)) / length(min30Stress(50:100)))  /   (sum(min30Strain(50:100)) / length(min30Strain(50:100)))
+hrs2YM = (sum(hrs2Stress(50:100)) / length(hrs2Stress(50:100)))  /   (sum(hrs2Strain(50:100)) / length(hrs2Strain(50:100)))
+hrs6YM = (sum(hrs6Stress(50:100)) / length(hrs6Stress(50:100)))  /   (sum(hrs6Strain(50:100)) / length(hrs6Strain(50:100)))
+hrs24YM = (sum(hrs24Stress(50:100)) / length(hrs24Stress(50:100)))  /   (sum(hrs24Strain(50:100)) / length(hrs24Strain(50:100)))
 
 %calc poisson's ratio
 untreatedP = (sum(untreated(50:100,5)) /length(untreated(50:100,5)))  ./ (sum(untreated(:,4))/length(untreated(:,4)));
@@ -65,12 +67,12 @@ hrs6DuctilityLinear = ( hrs6M(2) - hrs6M(1) )  / hrs6M(1);
 hrs24DuctilityLinear = ( hrs24M(2) - hrs24M(1) )  / hrs24M(1);
 
 %calc ductility (based on final Area)
-untreatedDuctilityArea = ( pi*(untreated(2)/2)^2 - pi*(untreated(1)/)2^2) / (pi*(untreated(1)/2)^2);
-annealedDuctilityArea = ( pi*(annealed(2)/2)^2 - pi*(annealed(1)/2)^2) / (pi*(annealed(1)/2)^2);
-min30DuctilityArea = ( pi*(min30(2)/2)^2 - pi*(min30(1)/2)^2) / (pi*(min30(1)/2)^2);
-hrs2DuctilityArea = ( pi*(hrs2(2)/2)^2 - pi*(hrs2(1)/2)^2 )/ (pi*(hrs2(1)/2)^2);
-hrs6DuctilityArea = ( pi*(hrs6(2)/2)^2 - pi*(hrs6(1)/2)^2 )/ (pi*(hrs6(1)/2)^2);
-hrs24DuctilityArea = ( pi*(hrs24(2)/2)^2 - pi*(hrs24(1)/2)^2) / (pi*(hrs24(1)/2)^2);
+% untreatedDuctilityArea = ( pi*(untreated(2)/2)^2 - pi*(untreated(1)/)2^2) / (pi*(untreated(1)/2)^2);
+% annealedDuctilityArea = ( pi*(annealed(2)/2)^2 - pi*(annealed(1)/2)^2) / (pi*(annealed(1)/2)^2);
+% min30DuctilityArea = ( pi*(min30(2)/2)^2 - pi*(min30(1)/2)^2) / (pi*(min30(1)/2)^2);
+% hrs2DuctilityArea = ( pi*(hrs2(2)/2)^2 - pi*(hrs2(1)/2)^2 )/ (pi*(hrs2(1)/2)^2);
+% hrs6DuctilityArea = ( pi*(hrs6(2)/2)^2 - pi*(hrs6(1)/2)^2 )/ (pi*(hrs6(1)/2)^2);
+% hrs24DuctilityArea = ( pi*(hrs24(2)/2)^2 - pi*(hrs24(1)/2)^2) / (pi*(hrs24(1)/2)^2);
  
 
 
