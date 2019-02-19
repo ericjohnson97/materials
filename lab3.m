@@ -25,12 +25,21 @@ hrs2Stress = hrs2(:,2)/(pi*(hrs2M(1)/2)^2);
 hrs6Stress = hrs6(:,2)/(pi*(hrs6M(1)/2)^2);
 hrs24Stress = hrs24(:,2)/(pi*(hrs24M(1)/2)^2);
 
-untreatedStrain = untreated(:,4)/untreatedM(3);
-annealedStrain = annealed(:,4)/annealedM(3);
-min30Strain = min30(:,4)/min30M(3);
-hrs2Strain = hrs2(:,4)/hrs2M(3);
-hrs6Strain = hrs6(:,4)/hrs6M(3);
-hrs24Strain = hrs24(:,4)/hrs24M(3);
+%calc strain
+untreatedStrain = untreated(:,4);
+annealedStrain = annealed(:,4);
+min30Strain = min30(:,4);
+hrs2Strain = hrs2(:,4);
+hrs6Strain = hrs6(:,4);
+hrs24Strain = hrs24(:,4);
+
+%calc max strain
+untreatedStrainMax = max(untreatedStrain);
+annealedStrainMax = max(annealedStrain);
+min30StrainMax = max(min30Strain);
+hrs2StrainMax = max(hrs2Strain);
+hrs6StrainMax = max(hrs6Strain);
+hrs24StrainMax = max(hrs24Strain);
 
 %calc Young's Modulus 
 
@@ -67,14 +76,12 @@ hrs6DuctilityLinear = ( hrs6M(2) - hrs6M(1) )  / hrs6M(1);
 hrs24DuctilityLinear = ( hrs24M(2) - hrs24M(1) )  / hrs24M(1);
 
 %calc ductility (based on final Area)
-% untreatedDuctilityArea = ( pi*(untreated(2)/2)^2 - pi*(untreated(1)/)2^2) / (pi*(untreated(1)/2)^2);
-% annealedDuctilityArea = ( pi*(annealed(2)/2)^2 - pi*(annealed(1)/2)^2) / (pi*(annealed(1)/2)^2);
-% min30DuctilityArea = ( pi*(min30(2)/2)^2 - pi*(min30(1)/2)^2) / (pi*(min30(1)/2)^2);
-% hrs2DuctilityArea = ( pi*(hrs2(2)/2)^2 - pi*(hrs2(1)/2)^2 )/ (pi*(hrs2(1)/2)^2);
-% hrs6DuctilityArea = ( pi*(hrs6(2)/2)^2 - pi*(hrs6(1)/2)^2 )/ (pi*(hrs6(1)/2)^2);
-% hrs24DuctilityArea = ( pi*(hrs24(2)/2)^2 - pi*(hrs24(1)/2)^2) / (pi*(hrs24(1)/2)^2);
- 
-
+untreatedDuctilityArea = ( pi*(untreated(2)/2)^2 - pi*(untreated(1)/2)^2) / (pi*(untreated(1)/2)^2);
+annealedDuctilityArea = ( pi*(annealed(2)/2)^2 - pi*(annealed(1)/2)^2) / (pi*(annealed(1)/2)^2);
+min30DuctilityArea = ( pi*(min30(2)/2)^2 - pi*(min30(1)/2)^2) / (pi*(min30(1)/2)^2);
+hrs2DuctilityArea = ( pi*(hrs2(2)/2)^2 - pi*(hrs2(1)/2)^2 )/ (pi*(hrs2(1)/2)^2);
+hrs6DuctilityArea = ( pi*(hrs6(2)/2)^2 - pi*(hrs6(1)/2)^2 )/ (pi*(hrs6(1)/2)^2);
+hrs24DuctilityArea = ( pi*(hrs24(2)/2)^2 - pi*(hrs24(1)/2)^2) / (pi*(hrs24(1)/2)^2);
 
 
 
