@@ -44,20 +44,20 @@ hrs24StrainMax = max(hrs24Strain);
 %calc Young's Modulus 
 
 %SUMTING WONG
-untreatedYM = (sum(untreatedStress(50:100)) / length(untreatedStress(50:100)))  /   (sum(untreatedStrain(50:100)) / length(untreatedStrain(50:100)))
-annealedYM = (sum(annealedStress(50:100)) / length(annealedStress(50:100)))  /   (sum(annealedStrain(50:100)) / length(annealedStrain(50:100)))
-min30YM = (sum(min30Stress(50:100)) / length(min30Stress(50:100)))  /   (sum(min30Strain(50:100)) / length(min30Strain(50:100)))
-hrs2YM = (sum(hrs2Stress(50:100)) / length(hrs2Stress(50:100)))  /   (sum(hrs2Strain(50:100)) / length(hrs2Strain(50:100)))
-hrs6YM = (sum(hrs6Stress(50:100)) / length(hrs6Stress(50:100)))  /   (sum(hrs6Strain(50:100)) / length(hrs6Strain(50:100)))
-hrs24YM = (sum(hrs24Stress(50:100)) / length(hrs24Stress(50:100)))  /   (sum(hrs24Strain(50:100)) / length(hrs24Strain(50:100)))
+untreatedYM = (sum(untreatedStress(200:1000)) / length(untreatedStress(200:1000)))  /   (sum(untreatedStrain(200:1000)) / length(untreatedStrain(200:1000)))
+annealedYM = (sum(annealedStress(100:500)) / length(annealedStress(100:500)))  /   (sum(annealedStrain(100:500)) / length(annealedStrain(100:500)))
+min30YM = (sum(min30Stress(100:500)) / length(min30Stress(100:500)))  /   (sum(min30Strain(100:500)) / length(min30Strain(100:500)))
+hrs2YM = (sum(hrs2Stress(100:500)) / length(hrs2Stress(100:500)))  /   (sum(hrs2Strain(100:500)) / length(hrs2Strain(100:500)))
+hrs6YM = (sum(hrs6Stress(100:500)) / length(hrs6Stress(100:500)))  /   (sum(hrs6Strain(100:500)) / length(hrs6Strain(100:500)))
+hrs24YM = (sum(hrs24Stress(100:500)) / length(hrs24Stress(100:500)))  /   (sum(hrs24Strain(100:500)) / length(hrs24Strain(100:500)))
 
 %calc poisson's ratio
-untreatedP = (sum(untreated(50:100,5)) /length(untreated(50:100,5)))  ./ (sum(untreated(:,4))/length(untreated(:,4)));
-annealedP = (sum(annealed(50:100,5)) /length(annealed(50:100,5)))  ./ (sum(annealed(:,4))/length(annealed(:,4)));
-min30P = (sum(min30(50:100,5)) /length(min30(50:100,5)))  ./ (sum(min30(:,4))/length(min30(:,4)));
-hrs2P = (sum(hrs2(50:100,5)) /length(hrs2(50:100,5)))  ./ (sum(hrs2(:,4))/length(hrs2(:,4)));
-hrs6P = (sum(hrs6(50:100,5)) /length(hrs6(50:100,5)))  ./ (sum(hrs6(:,4))/length(hrs6(:,4)));
-hrs24P = (sum(hrs24(50:100,5)) /length(hrs24(50:100,5)))  ./ (sum(hrs24(:,4))/length(hrs24(:,4)));
+untreatedP = (sum(untreated(50:100,5)) /length(untreated(50:100,5)))  ./ (sum(untreated(:,4))/length(untreated(:,4)))
+annealedP = (sum(annealed(50:100,5)) /length(annealed(50:100,5)))  ./ (sum(annealed(:,4))/length(annealed(:,4)))
+min30P = (sum(min30(50:100,5)) /length(min30(50:100,5)))  ./ (sum(min30(:,4))/length(min30(:,4)))
+hrs2P = (sum(hrs2(50:100,5)) /length(hrs2(50:100,5)))  ./ (sum(hrs2(:,4))/length(hrs2(:,4)))
+hrs6P = (sum(hrs6(50:100,5)) /length(hrs6(50:100,5)))  ./ (sum(hrs6(:,4))/length(hrs6(:,4)))
+hrs24P = (sum(hrs24(50:100,5)) /length(hrs24(50:100,5)))  ./ (sum(hrs24(:,4))/length(hrs24(:,4)))
 
 %calc ultimate tensile strength
 untreatedUltimate = max(untreatedStress);
@@ -75,18 +75,47 @@ hrs2DuctilityLinear = ( hrs2M(2) - hrs2M(1) )  / hrs2M(1);
 hrs6DuctilityLinear = ( hrs6M(2) - hrs6M(1) )  / hrs6M(1);
 hrs24DuctilityLinear = ( hrs24M(2) - hrs24M(1) )  / hrs24M(1);
 
-%calc ductility (based on final Area)
-untreatedDuctilityArea = ( pi*(untreated(2)/2)^2 - pi*(untreated(1)/2)^2) / (pi*(untreated(1)/2)^2);
-annealedDuctilityArea = ( pi*(annealed(2)/2)^2 - pi*(annealed(1)/2)^2) / (pi*(annealed(1)/2)^2);
-min30DuctilityArea = ( pi*(min30(2)/2)^2 - pi*(min30(1)/2)^2) / (pi*(min30(1)/2)^2);
-hrs2DuctilityArea = ( pi*(hrs2(2)/2)^2 - pi*(hrs2(1)/2)^2 )/ (pi*(hrs2(1)/2)^2);
-hrs6DuctilityArea = ( pi*(hrs6(2)/2)^2 - pi*(hrs6(1)/2)^2 )/ (pi*(hrs6(1)/2)^2);
-hrs24DuctilityArea = ( pi*(hrs24(2)/2)^2 - pi*(hrs24(1)/2)^2) / (pi*(hrs24(1)/2)^2);
+%calc toughness 
+untreatedToughness = 0;
+for i=1:length(untreatedStress)-1
+	untreatedToughness = untreatedStress(i)*(untreatedStrain(i+1)-untreatedStrain(i)) + untreatedToughness;
+end
+untreatedToughness
+
+annealedToughness = 0;
+for i=1:length(annealedStress)-1
+	annealedToughness = annealedStress(i)*(annealedStrain(i+1)-annealedStrain(i)) + annealedToughness;
+end
+annealedToughness
+
+min30Toughness = 0;
+for i=1:length(min30Stress)-1
+	min30Toughness = min30Stress(i)*(min30Strain(i+1)-min30Strain(i)) + min30Toughness;
+end
+min30Toughness
+
+hrs2Toughness = 0;
+for i=1:length(hrs2Stress)-1
+	hrs2Toughness = hrs2Stress(i)*(hrs2Strain(i+1)-hrs2Strain(i)) + hrs2Toughness;
+end
+hrs2Toughness
+
+hrs6Toughness = 0;
+for i=1:length(hrs6Stress)-1
+	hrs6Toughness = hrs6Stress(i)*(hrs6Strain(i+1)-hrs6Strain(i)) + hrs6Toughness;
+end
+hrs6Toughness
+
+hrs24Toughness = 0;
+for i=1:length(hrs24Stress)-1
+	hrs24Toughness = hrs24Stress(i)*(hrs24Strain(i+1)-hrs24Strain(i)) + hrs24Toughness;
+end
+hrs24Toughness
 
 
 
 figure(1)
-plot(untreatedStrain, untreatedStress);
+plot(untreatedStrain(300:1000), untreatedStress(300:1000));
 title("Stress vs Strain of Untreated Aluminium"); 
 xlabel( 'Strain' )
 ylabel( 'Stress [lbf]' )
