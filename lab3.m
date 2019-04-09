@@ -291,4 +291,3 @@ legend('extensometer','2 percent offset');
 
 
 
-
