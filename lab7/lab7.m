@@ -40,6 +40,7 @@ figure(2)
 title("Weibull Distribution"); 
 xlabel( 'Stress [MPa]' )
 ylabel( 'Probability' )
+
 hold on
 sigma0 = 300;
 sigma = [0:600];
@@ -52,6 +53,8 @@ hold on
 plot(sigma, P{2})
 hold on
 plot(sigma, P{3})
+hold on
+legend('m=5', 'm=10', 'm=20')
 
 
 figure(3)

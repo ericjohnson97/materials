@@ -8,19 +8,19 @@ end
 
 material = ["0_sg" "45_sg" "90_sg" "0_str" "45_str"];
 dimensions = [.4995, .0555; .499, .062; .502, .087; .494, .144; .4778, .0803];
-L = 8;
+
 %Strain gauge calculations
  for i=1:3
     
      A = dimensions(i,1)*dimensions(i,2);
      stress{i} = data{i}(:,3)/A;
-     strain{i}=abs(data{i}(:,5)/L);
+     strain{i}=abs(data{i}(:,5));
     
      %Young's Modulus
      youngs(i) = mean(stress{i}(150:400)./strain{i}(150:400));
      
      %Poisson's Ratio
-     strainTrans{i} = abs(data{i}(:,4)/dimensions(i,1));
+     strainTrans{i} = abs(data{i}(:,4));
      poissons(i) = mean(strainTrans{i}(150:600)./strain{i}(150:600)); 
      
      fprintf('Youngs Mod %s : %f \n', material(i), youngs(i) );
@@ -67,7 +67,7 @@ for i=4:5
     
      A = dimensions(i,1)*dimensions(i,2);
      stress{i} = data{i}(:,3)/A;
-     strain{i}=abs(data{i}(:,2)/L);
+     strain{i}=abs(data{i}(:,2));
 
      %young's modulus
      youngs(i) = mean(stress{i}(150:400)./strain{i}(150:400));
@@ -92,6 +92,12 @@ hold on
 title('Stress vs Strain 45 Strain Gauge'); 
 xlabel( 'Strain [%]' )
 ylabel( 'Stress [psi]' )
+
+Ef =3.41e7;
+Em =4.93e5;  
+Vf = (E1 - Em)/(Ef - Em)
+
+
 
 
 
